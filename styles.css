@@ -7,7 +7,7 @@ body {
     font-family: 'Futura', sans-serif;
     background-color: #000000;
     margin: 0;
-    padding: 20px;
+    padding: 0px;
 }
 
 header {
@@ -26,6 +26,8 @@ header {
     margin-right: 20px;
     opacity: 0;
     transition: opacity 2s ease;
+    max-width: 100%;
+    height: auto;
 }
 
 .show-logo {
@@ -121,6 +123,8 @@ nav li:hover > a {
     height: 140%;
     margin-right: 400px;
     margin-top: 240px;
+    max-width: 100%;
+    height: auto;
 }
 
 .hero-text {
@@ -141,6 +145,8 @@ nav li:hover > a {
 }
 
 .menu {
+    display: flex;
+    flex-wrap: wrap;
     opacity: 0;
     transition: opacity 2s ease;
     
@@ -148,6 +154,50 @@ nav li:hover > a {
 
 .show-menu {
     opacity: 1;
+}
+
+/* Estilos para pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+    .hero {
+        height: 200px; /* Ajusta la altura del hero */
+    }
+
+    .hero-text {
+        font-size: 18px; /* Reduce el tamaño de la fuente */
+        right: 10px; /* Ajusta la posición */
+        bottom: 10px; /* Ajusta la posición */
+    }
+
+    .menu {
+        flex-direction: column; /* Cambia a una columna en móviles */
+        align-items: flex-start; /* Alinear a la izquierda */
+    }
+
+    .menu li {
+        margin: 5px 0; /* Espaciado entre elementos del menú */
+    }
+}
+
+/* Estilos para pantallas medianas (tabletas) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .hero {
+        height: 250px; /* Ajusta la altura del hero */
+    }
+
+    .hero-text {
+        font-size: 20px; /* Ajusta el tamaño de la fuente */
+    }
+}
+
+/* Estilos para pantallas grandes (escritorio) */
+@media (min-width: 1025px) {
+    .hero {
+        height: 300px; /* Altura del hero para pantallas grandes */
+    }
+
+    .hero-text {
+        font-size: 24px; /* Tamaño de letra para pantallas grandes */
+    }
 }
 
 
