@@ -1,0 +1,380 @@
+@font-face {
+    font-family: 'Futura';
+    src: url('futura/Futura\ Book.ttf') format('truetype');  
+}
+
+::selection {
+    background-color: #808080;
+    color: #f4f4f4;
+}
+
+body {
+    font-family: 'Futura', sans-serif;
+    background-color: #000000;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+}
+
+.logo {
+    height: 30px;
+    margin-left: 10px;
+    margin-right: 20px;
+    opacity: 0;
+    transition: opacity 2s ease;
+}
+
+.show-logo {
+    opacity: 1;
+}
+
+nav {
+    margin: 20px 40px;
+    text-align: left;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    position: relative;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+    position: relative;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: 300;
+    font-family: 'Futura', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+    padding: 5px;
+}
+
+nav a:hover {
+    color: #808080;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: black;
+    padding: 10px;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+nav li:hover .submenu {
+    display: block;
+}
+
+.submenu li {
+    display: block;
+    margin: 5px 0;
+}
+
+.submenu a {
+    color: white;
+    font-size: 11px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+.submenu a:hover {
+    color: rgb(128, 128, 128);
+}
+
+
+nav li {
+    padding: 5px;
+}
+
+nav li:hover > a {
+    color: rgb(128, 128, 128);
+}
+
+.hero {
+    background-color: #000000;
+    height: 400px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 3s ease;
+}
+
+.hero-logo {
+    height: 140%;
+    margin-right: 400px;
+    margin-top: 240px;
+}
+
+.hero-text {
+    color: white; /* Color del texto */
+    font-family: 'Futura', sans-serif; /* Fuente Futura */
+    font-stretch: expanded;
+    font-size: 24px; /* Tamaño de letra, ajusta según sea necesario */
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase; /* Convertir a mayúsculas */
+    position: absolute; /* Posicionar el texto */
+    right: 610px; /* Espaciado desde el lado derecho */
+    bottom: 100px; /* Espaciado desde la parte inferior */
+    text-align: right; /* Justificar a la derecha */
+}
+.show-hero {
+    opacity: 1;
+}
+
+.menu {
+    color: white;
+    opacity: 0;
+    transition: opacity 2s ease;
+    font-family: 'Futura', sans-serif;  
+    font-size: 11px;        
+    font-weight: 100;   
+    letter-spacing: 2px;
+}
+
+.show-menu {
+    opacity: 1;
+}
+
+body{
+    margin:0;
+    overflow-x:hidden;
+    }
+    
+.footer {
+    background:#000;
+    padding:30px 0px;
+    font-family: 'Futura', sans-serif;
+    text-align:center;
+    opacity: 0;
+    transition: opacity 4s ease;
+    margin-top: -120px;
+}
+
+.footer.fade-in {
+    opacity: 1;
+}
+
+.footer .row{
+    width:100%;
+    margin:1% 0%;
+    padding:0.6% 0%;
+    color: #ffffff;
+    font-size:.9em;
+    text-align: center;
+    }
+    
+.footer .row a{
+    text-decoration:none;
+    color:#ffffff;
+    transition:0.5s;
+    }
+    
+.footer .row a:hover{
+    color:#808080;
+    }
+    
+.footer .row ul{
+    width:100%;
+    padding: 0;
+    margin: 0;
+    }
+    
+.footer .row ul li{
+    display:inline-block;
+    margin:0px 30px;
+    }
+    
+.footer .row a i{
+    font-size:1.2em;
+    margin:0% 1%;
+    }
+    
+@media (max-width:720px){
+    .footer{
+    text-align:left;
+    padding:5%;
+    }
+    .footer .row ul li{
+    display:block;
+    margin:10px 0px;
+    text-align:left;
+    }
+    .footer .row a i{
+    margin:0% 3%;
+    }
+}
+
+.contact-container {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+    margin-top: -520px;
+}
+
+.contact-form {
+    background: #000000;
+    padding: 30px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 600px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-right: 200px;
+}
+
+.form-title {
+    font-family: 'Futura', sans-serif;
+    color: white;
+    font-size: 18px;
+    margin-bottom: 12px;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.form-group input,
+.form-group textarea {
+    font-family: 'Futura', sans-serif;
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-bottom: 2px solid #808080;
+    color: white;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-bottom: 2px solid #808080;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.form-group label {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 16px;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.form-group input:focus ~ label,
+.form-group input:valid ~ label,
+.form-group textarea:focus ~ label,
+.form-group textarea:valid ~ label {
+    top: -20px;
+    left: 0;
+    font-size: 12px;
+    color: #808080;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: transparent;
+    border: 2px solid #808080;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.submit-btn:hover {
+    background: #808080;
+    color: black;
+}
+
+@media (max-width: 600px) {
+    .contact-form {
+        padding: 20px;
+    }
+}
+
+
+
+.content-container {
+    text-align: center;
+    padding: 20px;
+    font-family: 'Futura', sans-serif;
+    color: white;
+    margin-bottom: 50px;
+}
+
+.card-container {
+    display: grid; /* Cambiado a grid para un mejor control */
+    grid-template-columns: repeat(2, 1fr); /* 3 columnas */
+    gap: 20px; /* Espacio entre tarjetas */
+    justify-items: center; /* Centra las tarjetas en cada celda */
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    width: 100%; /* Ancho completo de la celda */
+    max-width: 600px; /* Ancho máximo de cada tarjeta */
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Eleva la tarjeta al pasar el mouse */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Aumenta la sombra */
+}
+
+.card-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.download-btn {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.download-icon {
+    width: 24px; /* Ajusta el tamaño del icono de descarga */
+    height: 24px;
+    background: transparent;
+    clip-path: circle(40%)
+}
