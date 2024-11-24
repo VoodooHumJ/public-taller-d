@@ -163,202 +163,38 @@ body{
     overflow-x:hidden;
     }
     
-.footer {
-    background:#000;
-    padding:30px 0px;
-    font-family: 'Futura', sans-serif;
-    text-align:center;
-    opacity: 0;
-    transition: opacity 4s ease;
-    margin-top: -120px;
-}
-
-.footer.fade-in {
-    opacity: 1;
-}
-
-.footer .row{
-    width:100%;
-    margin:1% 0%;
-    padding:0.6% 0%;
-    color: #ffffff;
-    font-size:.9em;
-    text-align: center;
-    }
-    
-.footer .row a{
-    text-decoration:none;
-    color:#ffffff;
-    transition:0.5s;
-    }
-    
-.footer .row a:hover{
-    color:#808080;
-    }
-    
-.footer .row ul{
-    width:100%;
-    padding: 0;
-    margin: 0;
-    }
-    
-.footer .row ul li{
-    display:inline-block;
-    margin:0px 30px;
-    }
-    
-.footer .row a i{
-    font-size:1.2em;
-    margin:0% 1%;
-    }
-    
-@media (max-width:720px){
-    .footer{
-    text-align:left;
-    padding:5%;
-    }
-    .footer .row ul li{
-    display:block;
-    margin:10px 0px;
-    text-align:left;
-    }
-    .footer .row a i{
-    margin:0% 3%;
-    }
-}
-
-.contact-container {
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    min-height: 80vh;
-    padding: 20px;
-    margin-top: -520px;
-}
-
-.contact-form {
-    background: #000000;
-    padding: 30px;
-    border-radius: 15px;
-    width: 100%;
-    max-width: 600px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    margin-right: 200px;
-}
-
-.form-title {
-    font-family: 'Futura', sans-serif;
-    color: white;
-    font-size: 18px;
-    margin-bottom: 12px;
-    text-align: center;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.form-group {
-    margin-bottom: 25px;
-    position: relative;
-}
-
-.form-group input,
-.form-group textarea {
-    font-family: 'Futura', sans-serif;
-    width: 100%;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    border: none;
-    border-bottom: 2px solid #808080;
-    color: white;
-    font-size: 14px;
-    transition: all 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-bottom: 2px solid #808080;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.form-group label {
-    position: absolute;
-    left: 12px;
-    top: 12px;
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 16px;
-    transition: all 0.3s ease;
-    pointer-events: none;
-}
-
-.form-group input:focus ~ label,
-.form-group input:valid ~ label,
-.form-group textarea:focus ~ label,
-.form-group textarea:valid ~ label {
-    top: -20px;
-    left: 0;
-    font-size: 12px;
-    color: #808080;
-}
-
-.submit-btn {
-    width: 100%;
-    padding: 15px;
-    background: transparent;
-    border: 2px solid #808080;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 30px;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.submit-btn:hover {
-    background: #808080;
-    color: black;
-}
-
-@media (max-width: 600px) {
-    .contact-form {
-        padding: 20px;
-    }
-}
-
-
-
 .content-container {
     text-align: center;
     padding: 20px;
     font-family: 'Futura', sans-serif;
     color: white;
-    margin-bottom: 50px;
+    margin-bottom: 80px;
 }
 
 .card-container {
-    display: grid; /* Cambiado a grid para un mejor control */
-    grid-template-columns: repeat(2, 1fr); /* 3 columnas */
-    gap: 20px; /* Espacio entre tarjetas */
-    justify-items: center; /* Centra las tarjetas en cada celda */
+    display: grid;  
+    grid-template-columns: repeat(2, 1fr);  
+    gap: 30px;  
+    justify-items: center; 
+    padding: 20px;
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
+    background: rgb(0, 0, 0);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(400px);
+    border-radius: 1px;
     padding: 20px;
-    width: 100%; /* Ancho completo de la celda */
-    max-width: 600px; /* Ancho máximo de cada tarjeta */
+    width: 100%;  
+    max-width: 600px;  
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;  
 }
 
 .card:hover {
-    transform: translateY(-10px); /* Eleva la tarjeta al pasar el mouse */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Aumenta la sombra */
+    transform: translateY(-10px);  
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);  
 }
 
 .card-image {
@@ -373,8 +209,20 @@ body{
 }
 
 .download-icon {
-    width: 24px; /* Ajusta el tamaño del icono de descarga */
+    width: 24px;  
     height: 24px;
-    background: transparent;
-    clip-path: circle(40%)
+    margin-right: 8px; 
+    margin-bottom: -5px;
+     
 }
+
+a {
+    align-items: center;  
+    text-decoration: none;  
+    color: rgb(255, 255, 255);  
+}
+
+.hidden {
+    display: none;  
+}
+
