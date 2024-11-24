@@ -132,7 +132,7 @@ nav li:hover > a {
 
 .hero-logo {
     height: 150%;
-    margin-right: 400px;
+    margin-right: 350px;
     margin-top: 240px;
 }
 
@@ -140,12 +140,12 @@ nav li:hover > a {
     color: white;  
     font-family: 'Futura', sans-serif; 
     font-stretch: expanded;
-    font-size: 12px;  
+    font-size: 14px;  
     font-weight: 500;
     letter-spacing: 4px;
     text-transform: uppercase;  
     position: absolute;  
-    right: 620px;  
+    right: 570px;  
     bottom: 120px;  
     text-align: right; 
 }

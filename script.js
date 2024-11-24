@@ -9,10 +9,10 @@ window.onload = function() {
      
     setTimeout(() => {
         menu.classList.add('show-menu');  
-    }, 1000);  
+    }, 2000);  
 
      
     setTimeout(() => {
         logo2.classList.add('show-logo');  
-    }, 2000);  
+    }, 3000);  
 };
