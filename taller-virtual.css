@@ -128,17 +128,17 @@ nav li:hover > a {
 }
 
 .hero-text {
-    color: white; /* Color del texto */
-    font-family: 'Futura', sans-serif; /* Fuente Futura */
+    color: white;  
+    font-family: 'Futura', sans-serif;  
     font-stretch: expanded;
-    font-size: 24px; /* Tamaño de letra, ajusta según sea necesario */
+    font-size: 24px;  
     font-weight: 300;
     letter-spacing: 2px;
-    text-transform: uppercase; /* Convertir a mayúsculas */
-    position: absolute; /* Posicionar el texto */
-    right: 610px; /* Espaciado desde el lado derecho */
-    bottom: 100px; /* Espaciado desde la parte inferior */
-    text-align: right; /* Justificar a la derecha */
+    text-transform: uppercase;  
+    position: absolute;  
+    right: 610px;  
+    bottom: 100px;  
+    text-align: right;  
 }
 .show-hero {
     opacity: 1;
