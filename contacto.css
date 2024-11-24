@@ -261,7 +261,6 @@ body{
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    border-radius: 30px;
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 2px;
