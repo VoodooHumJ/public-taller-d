@@ -10,7 +10,7 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
-    background-color: #000000;
+    background-color: #808080;
 }
 
 header {
@@ -24,4 +24,8 @@ h1 {
 
 .g_signin2 {
     margin-top: 20px;
+}
+
+a {
+    color: #ffffff;
 }
