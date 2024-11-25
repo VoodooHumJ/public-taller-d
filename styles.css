@@ -197,4 +197,7 @@ nav li:hover > a {
     opacity: 1;  
 }
 
+html {
+    scroll-behavior: smooth;
+}
 

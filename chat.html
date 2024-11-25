@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Interno</title>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div id="chat">
+        <ul id="messages"></ul>
+        <input id="messageInput" placeholder="Escribe un mensaje..." />
+        <button id="sendButton">Enviar</button>
+    </div>
+
+    <script>
+        const socket = io();
+
+        // Cargar mensajes existentes
+        socket.on('loadMessages', (messages) => {
+            messages.forEach(msg => {
+                const li = document.createElement('li');
+                li.textContent = msg;
+                document.getElementById('messages').appendChild(li);
+            });
+        });
+
+        // Escuchar nuevos mensajes
+        socket.on('newMessage', (message) => {
+            const li = document.createElement('li');
+            li.textContent = message;
+            document.getElementById('messages').appendChild(li);
+        });
+
+        // Enviar mensaje
+        document.getElementById('sendButton').onclick = () => {
+            const message = document.getElementById('messageInput').value;
+            socket.emit('sendMessage', message);
+            document.getElementById('messageInput').value = '';
+        };
+    </script>
+</body>
+</html>

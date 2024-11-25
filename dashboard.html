@@ -10,6 +10,115 @@
     <!-- Font Awesome para íconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Estilos del nuevo diseño */
+        :root {
+            --sidebar-width: 250px;
+            --primary-color: #808080;
+            --secondary-color: #ffffff;
+            --bg-color: #000000;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--bg-color);
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: rgb(19, 18, 18);
+            backdrop-filter: blur(10px);
+            box-shadow: 2px 0 5px rgba(51, 50, 50, 0.1);
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+        }
+
+        .sidebar-header img {
+            width: 120px;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--secondary-color);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .sidebar-menu a:hover {
+            background: var(--bg-color);
+            color: var(--primary-color);
+        }
+
+        .sidebar-menu i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Main content styles */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 20px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: white;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+        }
+
         /* Estilos específicos del dashboard */
         .dashboard-container {
             padding: 20px;
@@ -24,10 +133,13 @@
         }
 
         .dashboard-card {
-            background: white;
+            font-family: 'Futura', sans-serif;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
 
@@ -77,7 +189,7 @@
         .card-icon {
             font-size: 24px;
             margin-bottom: 15px;
-            color: #007bff;
+            color: #808080;
         }
 
         .progress-bar {
@@ -89,47 +201,42 @@
 
         .progress {
             height: 100%;
-            background: #007bff;
+            background: #808080;
             border-radius: 5px;
             width: 75%;
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul class="menu">
-                <li><a href="index.html">INICIO</a></li>
-                <li>|</li>
-                <li><a href="dashboard.html">DASHBOARD</a></li>
-            </ul>
-        </nav>
-        <a href="index.html" class="logo-container">
-            <img src="logo2.png" alt="Logo" class="logo" id="logo2">
-        </a>
-    </header>
+    <!-- Botón para móvil -->
+    <button class="menu-toggle d-md-none">
+        <i class="fas fa-bars"></i>
+    </button>
 
-    <div class="dashboard-container">
-        <div class="dashboard-header">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="logo2.png" alt="Logo">
             <div class="user-info">
                 <img src="https://via.placeholder.com/50" alt="User Avatar" class="user-avatar">
-                <div>
-                    <h2>Bienvenido, Usuario</h2>
-                    <p>Estudiante</p>
-                </div>
-            </div>
-            <div>
-                <a href="logout.html" class="btn btn-danger">Cerrar Sesión</a>
+                <h5>Bienvenido, Usuario</h5>
+                <p class="text-muted">Estudiante</p>
             </div>
         </div>
+        
+        <ul class="sidebar-menu">
+            <li><a href="#perfil"><i class="fas fa-user"></i> Perfil</a></li>
+            <li><a href="cronograma.html"><i class="fas fa-calendar"></i> Cronograma</a></li>
+            <li><a href="#tareas"><i class="fas fa-tasks"></i> Tareas</a></li>
+            <li><a href="#bibliografia"><i class="fas fa-book"></i> Bibliografía</a></li>
+            <li><a href="#chat.html"><i class="fas fa-comments"></i> Chat</a></li>
+            <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+        </ul>
+    </div>
 
-        <div class="quick-links">
-            <a href="#perfil" class="quick-link"><i class="fas fa-user"></i> Perfil</a>
-            <a href="#cronograma" class="quick-link"><i class="fas fa-calendar"></i> Cronograma</a>
-            <a href="#tareas" class="quick-link"><i class="fas fa-tasks"></i> Tareas</a>
-            <a href="#bibliografia" class="quick-link"><i class="fas fa-book"></i> Bibliografía</a>
-        </div>
-
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Dashboard Grid -->
         <div class="dashboard-grid">
             <!-- Tarjeta de Perfil -->
             <div class="dashboard-card">
@@ -174,17 +281,7 @@
                 </ul>
             </div>
 
-            <!-- Tarjeta de Progreso -->
-            <div class="dashboard-card">
-                <div class="card-icon"><i class="fas fa-chart-line"></i></div>
-                <h3>Progreso del Curso</h3>
-                <p>75% completado</p>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 75%"></div>
-                </div>
-            </div>
-
-            <!-- Tarjeta de Anuncios -->
+                       <!-- Tarjeta de Anuncios -->
             <div class="dashboard-card">
                 <div class="card-icon"><i class="fas fa-bullhorn"></i></div>
                 <h3>Anuncios</h3>
@@ -197,6 +294,22 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Scripts -->
+    <script>
+        // Toggle sidebar en móvil
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+
+        // Cerrar sidebar al hacer clic fuera en móvil
+        document.addEventListener('click', function(event) {
+            const sidebar = document.querySelector('.sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
