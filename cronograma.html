@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html> Lan
 <head>
-    <title>Cronograma - LMS</title>
+    <title>Cronograma - Taller-D</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- FullCalendar -->
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/locales/es.js'></script>
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -254,6 +255,7 @@
 
             // Inicializar el calendario
             calendar = new FullCalendar.Calendar(calendarEl, {
+                locale: 'es', // Establecer el idioma a español
                 initialView: 'dayGridMonth',
                 headerToolbar: {
                     left: 'prev,next today',
