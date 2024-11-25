@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller-D | En común</title>
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="equipo.css">
+    <link rel="stylesheet" href="en-comun.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">INICIO</a></li>
+                <li>|</li>
+                    <a href="equipo.html">EQUIPO</a>
+                </li>
+                <li>|</li>
+                <li>
+                    <a href="#">NOTICIAS</a>
+                    <ul class="submenu">
+                        <li><a href="publicaciones.html">PUBLICACIONES</a></li>
+                        <li><a href="eventos.html">EVENTOS</a></li>
+                        <li><a href="en-comun.html">EN COMÚN</a></li>
+                    </ul>
+                </li>
+                <li>|</li>
+                <li><a href="blog.html">BLOG</a></li>
+                <li>|</li>
+                <li>
+                    <a href="#">GALERIA</a>
+                    <ul class="submenu">
+                        <li><a href="proyectos-destacados.html">PROYECTOS DESTACADOS</a></li>
+                    </ul>
+                </li>
+                <li>|</li>
+                <li>
+                    <a href="#">TALLER-D VIRTUAL</a>
+                    <ul class="submenu">
+                        <li><a href="taller-virtual.html">TALLER-D-WAREHOUSE</a></li>
+                    </ul>
+                </li>
+                <li>|</li>
+                <li><a href="contacto.html">CONTACTO</a></li>
+            </ul>
+        </nav>
+        <a href="login.html">  
+            <img src="logo2.png" alt="Logo" class="logo" id="logo2">
+        </a>
+    </header>
+    
+    <div class="video-container">
+        <h1>EN COMÚN</h1>
+        <h2>Ciclo de diálogos virtuales para estudiantes de arquitectura</h2>
+        <div class="video-grid">
+            <div class="video-item">
+                <h3>CHARLA ANGELA ALVAREZ 27/04/2021</h3>
+                <div class="video-thumbnail" data-video-id="bwGFxCtPnDI">
+                    <img src="yt/1.png" alt="CHARLA ANGELA ALVAREZ 27 ABRIL 2021">
+                    <div class="play-button">▶</div>
+                </div>
+                <p class="video-description">Conferencia brindada por la Arq. Angela Álvarez en el Taller D de la Facultad de Arquitectura de la Universidad Mayor de San Andrés, La Paz, Bolivia. 27 de abril 2021</p>
+            </div>
+            <div class="video-item">
+                <h3>CHARLA SOMMET 20/04/2021</h3>
+                <div class="video-thumbnail" data-video-id="zx4_Z2aZmrM">
+                    <img src="yt/2.png" alt="CHARLA ANGELA ALVAREZ 27 ABRIL 2021">
+                    <div class="play-button">▶</div>
+                </div>
+                <p class="video-description">Conferencia Estudio SOMMET Sebastián Fernández de Córdova, Maria Inés Saavedra, Taller D -  FAADU UMSA, 20 abril 2021</p>
+            </div>
+            <div class="video-item">
+                <h3>CHARLA JORGE GAMBINI 24/07/2020</h3>
+                <div class="video-thumbnail" data-video-id="bTXAZBruYXk">
+                    <img src="yt/3.png" alt="CHARLA JORGE GAMBINI 24/07/2021">
+                    <div class="play-button">▶</div>
+                </div>
+                <p class="video-description">Charla virtual del Arq. Jorge Gambini en el Taller D de la Facultad de Arquitectura, Arte, Diseño y Urbanismo de la Universidad Mayor de San Andrés. La Paz, Bolivia.</p>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <!-- Modal para reproducir videos -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <iframe id="videoFrame" width="800px" height="600px" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script src="script.js"></script>  
+    <script src="equipo.js"></script>
+    <script src="modal.js"></script>
+</body>
+</html>
+

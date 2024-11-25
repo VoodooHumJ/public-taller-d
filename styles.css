@@ -146,7 +146,7 @@ nav li:hover > a {
     text-transform: uppercase;  
     position: absolute;  
     right: 570px;  
-    bottom: 120px;  
+    top: 740px;
     text-align: right; 
 }
 .show-hero {

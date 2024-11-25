@@ -12,104 +12,9 @@ body {
     font-family: 'Futura', sans-serif;
     background-color: #000000;
     margin: 0;
-    padding: 20px;
+    padding: 2px;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #000000;
-    color: white;
-    text-align: center;
-}
-
-.logo {
-    height: 30px;
-    margin-left: 10px;
-    margin-right: 20px;
-    opacity: 0;
-    transition: opacity 2s ease;
-}
-
-.show-logo {
-    opacity: 1;
-}
-
-nav {
-    margin: 20px 40px;
-    text-align: left;
-}
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    position: relative;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-    position: relative;
-}
-
-nav a {
-    text-decoration: none;
-    color: white;
-    font-weight: 300;
-    font-family: 'Futura', sans-serif;
-    font-size: 11px;
-    text-transform: uppercase;
-    transition: color 0.3s ease;
-    padding: 5px;
-}
-
-nav a:hover {
-    color: #808080;
-}
-
-.submenu {
-    display: none;
-    position: absolute;
-    background-color: black;
-    padding: 10px;
-    z-index: 1;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 5px;
-    margin-top: 5px;
-}
-
-nav li:hover .submenu {
-    display: block;
-}
-
-.submenu li {
-    display: block;
-    margin: 5px 0;
-}
-
-.submenu a {
-    color: white;
-    font-size: 11px;
-    text-transform: uppercase;
-    padding: 5px 10px;
-    transition: color 0.3s ease;
-}
-
-.submenu a:hover {
-    color: rgb(128, 128, 128);
-}
-
-
-nav li {
-    padding: 5px;
-}
-
-nav li:hover > a {
-    color: rgb(128, 128, 128);
-}
 
 .hero {
     background-color: #000000;
@@ -346,3 +251,16 @@ body{
     }
 }
 
+.menu {
+    color: white;
+    opacity: 0;
+    transition: opacity 2s ease;
+    font-family: 'Futura', sans-serif;  
+    font-size: 11px;        
+    font-weight: 100;   
+    letter-spacing: 2px;
+}
+
+.show-menu {
+    opacity: 1;
+}
