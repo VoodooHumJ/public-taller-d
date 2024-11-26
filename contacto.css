@@ -288,3 +288,63 @@ body{
 .show-menu {
     opacity: 1;
 }
+
+.person-container {
+    position: relative;
+    display: inline-block;
+}
+
+.person-image {
+    width: 300px; /* Ajusta según necesites */
+    height: auto;
+    transition: opacity 0.3s ease;
+}
+
+.tooltip {
+    position: absolute;
+    bottom: 100%; /* Aparecerá arriba de la imagen */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    width: 250px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    
+    /* Añade un pequeño triángulo en la parte inferior */
+    &::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -10px;
+        border-width: 10px;
+        border-style: solid;
+        border-color: rgba(0, 0, 0, 0.9) transparent transparent transparent;
+    }
+}
+
+.tooltip h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+.tooltip p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* El tooltip aparece al hacer hover sobre la imagen */
+.person-container:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    bottom: 110%; /* Sube un poco más al aparecer */
+}
+
+/* Opcional: efecto de oscurecimiento en la imagen al hover */
+.person-container:hover .person-image {
+    opacity: 0.8;
+}

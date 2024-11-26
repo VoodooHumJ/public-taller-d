@@ -1,0 +1,232 @@
+/* Estilos generales */
+.foro-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Futura', sans-serif;
+}
+
+/* Estilos para el botón de nuevo tema */
+.nuevo-tema {
+    margin-bottom: 30px;
+    text-align: right;
+}
+
+.btn-nuevo {
+    background-color: #000;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Futura', sans-serif;
+    transition: background-color 0.3s;
+}
+
+.btn-nuevo:hover {
+    background-color: #333;
+}
+
+/* Estilos para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    width: 60%;
+    max-width: 600px;
+    border-radius: 8px;
+}
+
+.close {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Estilos para los filtros */
+.filtros {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.filtros select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Futura', sans-serif;
+}
+
+/* Estilos para las tarjetas de debate */
+.debate-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+    transition: transform 0.2s;
+}
+
+.debate-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.debate-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.debate-info {
+    flex-grow: 1;
+}
+
+.debate-info h3 {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+}
+
+.categoria {
+    background-color: #f0f0f0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.debate-stats {
+    display: flex;
+    gap: 15px;
+}
+
+.debate-stats span {
+    color: #666;
+}
+
+.debate-content {
+    margin-bottom: 15px;
+}
+
+.debate-footer {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-responder, .btn-seguir {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Futura', sans-serif;
+}
+
+.btn-responder {
+    background-color: #000;
+    color: white;
+}
+
+.btn-seguir {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+/* Formulario del modal */
+#formNuevoTema {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#formNuevoTema input,
+#formNuevoTema select,
+#formNuevoTema textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Futura', sans-serif;
+}
+
+#formNuevoTema textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.btn-submit {
+    background-color: #000;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Futura', sans-serif;
+}
+
+/* Estilos para notificaciones */
+.notificacion {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 4px;
+    color: white;
+    font-family: 'Futura', sans-serif;
+    animation: slideIn 0.3s ease-out;
+    z-index: 1100;
+}
+
+.notificacion.success {
+    background-color: #4CAF50;
+}
+
+.notificacion.error {
+    background-color: #f44336;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Estilos adicionales para el formulario */
+.form-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-cancelar {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Futura', sans-serif;
+}

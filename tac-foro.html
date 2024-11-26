@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAC-FORO | Taller-D</title>
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="perfil.css">
+    <link rel="stylesheet" href="foro.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --sidebar-width: 250px;
+            --primary-color: #ffffff33;
+            --secondary-color: #ffffff;
+            --bg-color: #000000;
+        }
+
+        ::selection {
+            background-color: #808080;
+            color: #f4f4f4;
+        }
+        
+        @font-face {
+            font-family: 'Futura';
+            src: url('futura/Futura\ Book.ttf') format('truetype');  
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--bg-color);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            font-family: 'Futura', sans-serif;
+            font-size: 24px;
+            font-weight: 100;
+        }	
+
+        h3 {
+            font-family: 'Futura', sans-serif;
+            font-size: 18px;
+            font-weight: 100;
+            color: #808080;
+        }
+
+        .sidebar {
+            font-size: 11px;
+            text-transform: uppercase;
+            font-stretch: expanded;
+            letter-spacing: 2px;
+            font-weight: 100;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: rgb(19, 18, 18);
+            backdrop-filter: blur(10px);
+            box-shadow: 2px 0 5px rgba(51, 50, 50, 0.1);
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+        }
+
+        .sidebar-header img {
+            width: 120px;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar-menu a {
+            font-family: 'Futura', sans-serif;
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--secondary-color);
+            text-decoration: none;
+            border-radius: 0px;
+            transition: all 0.3s;
+        }
+
+        .sidebar-menu a:hover {
+            background: var(--bg-color);
+            color: #ffffff;
+        }
+
+        .sidebar-menu i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+            color: #808080;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+    <button class="menu-toggle d-md-none">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="logo1.png" alt="Logo" style="width: 120px;">
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="dashboard.html"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="perfil.html"><i class="fas fa-user"></i> Perfil</a></li>
+            <li><a href="cronograma.html"><i class="fas fa-calendar"></i> Cronograma</a></li>
+            <li><a href="entregas.html"><i class="fas fa-tasks"></i> Entregas</a></li>
+            <li><a href="material.html"><i class="fas fa-book"></i> Material de proyecto</a></li>
+            <li><a href="tac-foro.html"><i class="fas fa-comments"></i> TAC-FORO</a></li>
+            <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+        </ul>
+    </div>
+    
+    <main class="foro-container">
+        <h2>TAC-FORO</h2>
+        <h3>Conecta con tus compañeros y docentes.</h3>
+        <!-- Sección de crear nuevo tema -->
+        <div class="nuevo-tema">
+            <button id="btnNuevoTema" class="btn-nuevo">
+                <i class="fas fa-plus"></i> Nueva pregunta
+            </button>
+        </div>
+
+        <!-- Modal para nuevo tema -->
+        <div id="modalNuevoTema" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Crear Nuevo Debate</h2>
+                <form id="formNuevoTema">
+                    <input type="text" id="titulo" name="titulo" placeholder="Título del debate" required>
+                    <select id="categoria" name="categoria" required>
+                        <option value="">Selecciona una categoría</option>
+                        <option value="arquitectura">Arquitectura</option>
+                        <option value="diseño">Diseño</option>
+                        <option value="urbanismo">Urbanismo</option>
+                        <option value="sustentabilidad">Sustentabilidad</option>
+                    </select>
+                    <textarea id="contenido" name="contenido" 
+                              placeholder="Describe tu tema de debate..." required></textarea>
+                    <div class="form-footer">
+                        <button type="button" class="btn-cancelar">Cancelar</button>
+                        <button type="submit" class="btn-submit">Publicar Debate</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Lista de debates -->
+        <div class="debates-list">
+            <!-- Filtros -->
+            <div class="filtros">
+                <select id="filtroCategoria">
+                    <option value="todos">Todas las categorías</option>
+                    <option value="arquitectura">Arquitectura</option>
+                    <option value="diseño">Diseño</option>
+                    <option value="urbanismo">Urbanismo</option>
+                    <option value="sustentabilidad">Sustentabilidad</option>  
+                    <option value="aplicaciones">Aplicaciones</option>
+                    <option value="programas">Programas</option>
+                    <option value="errores">Errores</option>
+                    <option value="renders">Renders</option>
+                    <option value="consejos">Consejos</option>
+                </select>
+                <select id="filtroOrden">
+                    <option value="reciente">Más recientes</option>
+                    <option value="popular">Más populares</option>
+                    <option value="respondidos">Más respondidos</option>
+                </select>
+            </div>
+
+            <!-- Debates -->
+            <div class="debate-card">
+                <div class="debate-header">
+                    <img src="image/usuario1.jpg" alt="Usuario" class="avatar">
+                    <div class="debate-info">
+                        <h3>¿Qué debo hacer?  NO puedo previsualizar el modelo en Sketchup?</h3>
+                        <span class="categoria">Arquitectura</span>
+                        <span class="categoria">Aplicaciones</span>
+                        <span class="autor">Por: Juan Pérez</span>
+                        <span class="fecha">Hace 2 días</span>
+                    </div>
+                    <div class="debate-stats">
+                        <span><i class="fas fa-comment"></i> 15 comentarios</span>
+                        <span><i class="fas fa-heart"></i> 23</span>
+                    </div>
+                </div>
+                <div class="debate-content">
+                    <p>Repentinamente apareció el este mensaje de error: ERROR 001</p>
+                </div>
+                <div class="debate-footer">
+                    <button class="btn-responder">Responder</button>
+                    <button class="btn-seguir">Seguir</button>
+                </div>
+            </div>
+
+            <div class="debate-card">
+                <div class="debate-header">
+                    <img src="image/usuario2.jpeg" alt="Usuario" class="avatar">
+                    <div class="debate-info">
+                        <h3>Técnicas para mejorar presentaciones de proyectos</h3>
+                        <span class="categoria">Arquitectura</span>
+                        <span class="categoria">Consejos</span>
+                        <span class="autor">Por: Luis Gómez</span>
+                        <span class="fecha">Hace 4 días</span>
+                    </div>
+                    <div class="debate-stats">
+                        <span><i class="fas fa-comment"></i> 8 comentarios</span>
+                        <span><i class="fas fa-heart"></i> 23</span>
+                    </div>
+                </div>
+                <div class="debate-content">
+                    <p>Discusión sobre cómo estructurar y presentar ideas de manera clara y profesional</p>
+                </div>
+                <div class="debate-footer">
+                    <button class="btn-responder">Responder</button>
+                    <button class="btn-seguir">Seguir</button>
+                </div>
+            </div>
+            
+            <div class="debate-card">
+                <div class="debate-header">
+                    <img src="image/usuario3.jpeg" alt="Usuario" class="avatar">
+                    <div class="debate-info">
+                        <h3>Errores comunes en renders y cómo solucionarlos</h3>
+                        <span class="categoria">Arquitectura</span>
+                        <span class="categoria">Renders</span>
+                        <span class="categoria">Errores</span>
+                        <span class="autor">Por: José Rodríguez</span>
+                        <span class="fecha">Hace 7 días</span>
+                    </div>
+                    <div class="debate-stats">
+                        <span><i class="fas fa-comment"></i> 85 comentarios</span>
+                        <span><i class="fas fa-heart"></i> 3</span>
+                    </div>
+                </div>
+                <div class="debate-content">
+                    <p>Un espacio para compartir problemas frecuentes al trabajar con software como AutoCAD, SketchUp o Revit, y consejos para mejorar calidad, iluminación, texturas, etc.</p>
+                </div>
+                <div class="debate-footer">
+                    <button class="btn-responder">Responder</button>
+                    <button class="btn-seguir">Seguir</button>
+                </div>
+            </div>
+            
+            <div class="debate-card">
+                <div class="debate-header">
+                    <img src="image/usuario4.jpg" alt="Usuario" class="avatar">
+                    <div class="debate-info">
+                        <h3>Problemas con programas de diseño: Consejos para resolver errores en AutoCAD, Revit o SketchUp</h3>
+                        <span class="categoria">Arquitectura</span>
+                        <span class="autor">Por: Liz Díaz</span>
+                        <span class="fecha">Hace 8 días</span>
+                    </div>
+                    <div class="debate-stats">
+                        <span><i class="fas fa-comment"></i> 19 comentarios</span>
+                        <span><i class="fas fa-heart"></i> 48</span>
+                    </div>
+                </div>
+                <div class="debate-content">
+                    <p>Foro para compartir soluciones a problemas técnicos o errores comunes en software de diseño arquitectónico.</p>
+                </div>
+                <div class="debate-footer">
+                    <button class="btn-responder">Responder</button>
+                    <button class="btn-seguir">Seguir</button>
+                </div>
+            </div>
+            <!-- Más debate-cards aquí -->
+        </div>
+    </main>
+</body>
+</html>

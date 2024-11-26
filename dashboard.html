@@ -28,8 +28,26 @@
             background: var(--bg-color);
         }
 
-         
+        p {
+            font-family: 'Futura', sans-serif;
+            font-size: 14px;
+            font-weight: 100;
+            color: #808080;
+            margin-top: 40;
+        }
+
+        h4 {
+            font-family: 'Futura', sans-serif;
+            font-size: 14px;
+            color: white;
+        }
+
         .sidebar {
+            font-size: 11px;
+            text-transform: uppercase;
+            font-stretch: expanded;
+            letter-spacing: 2px;
+            font-weight: 100;
             position: fixed;
             left: 0;
             top: 0;
@@ -158,7 +176,13 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            flex-direction: column;
         }
+
+        .user-role {
+            margin-top: 5px;
+            font-size: 14px;
+            color: white;
 
         .user-avatar {
             width: 50px;
@@ -235,6 +259,18 @@
             background-color: darken(var(--primary-color), 10%);
         }
 
+        h4 {
+            font-family: 'Futura', sans-serif;
+            font-size: 10px;
+            color: white;
+        }
+
+        h6 {
+            font-size: 12px;
+            color: white;
+            margin-top: px;
+        }
+
     </style>
 </head>
 <body>
@@ -246,20 +282,21 @@
      
     <div class="sidebar">
         <div class="sidebar-header">
-            <img src="logo2.png" alt="Logo">
+            <img src="logo1.png" alt="Logo">
             <div class="user-info">
                 <img src="image/perfil.jpg" alt="User Avatar" class="user-avatar">
-                <h5>Bienvenido, Usuario</h5>
-                <p class="text-muted">Estudiante</p>
+                <h4>Bienvenida, Diana Carolina</h4>
+                <h6 class="user-role">Estudiante</h6>
             </div>
         </div>
         
         <ul class="sidebar-menu">
+            <li><a href="dashboard.html"><i class="fas fa-user"></i> Inicio</a></li>
             <li><a href="perfil.html"><i class="fas fa-user"></i> Perfil</a></li>
             <li><a href="cronograma.html"><i class="fas fa-calendar"></i> Cronograma</a></li>
             <li><a href="entregas.html">5<i class="fas fa-tasks"></i> Entregas</a></li>
-            <li><a href="#bibliografia"><i class="fas fa-book"></i> Material de proyecto</a></li>
-            <li><a href="foro.html"><i class="fas fa-comments"></i> Chat</a></li>
+            <li><a href="material.html"><i class="fas fa-book"></i> Material de proyecto</a></li>
+            <li><a href="tac-foro.html"><i class="fas fa-comments"></i> TAC-FORO</a></li>
             <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
         </ul>
     </div>
@@ -330,7 +367,9 @@
                 <p>Plantea un problema y comparte tus soluciones con tus compañeros.</p>
                 <div class="forum-container">
                     <h4>Problema:</h4>
-                    <p id="problemStatement">¿Cuál es el mayor desafío que enfrentas en tu proyecto actual?</p>
+                    <p id="problemStatement">¿Qué debo hacer?  NO puedo previsualizar el modelo en Sketchup?</p>
+                    <span class="autor">Por: Juan Pérez</span>
+                    <span class="fecha">Hace 2 días</span>
                     <h4>Soluciones Propuestas:</h4>
                     <ul id="solutionList">
                     </ul>
@@ -343,8 +382,7 @@
 
      
     <script>
-         
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.menu-toggle').addEventListener('click', function() {
             document.querySelector('.sidebar').classList.toggle('active');
         });
 
@@ -359,5 +397,6 @@
         });
     </script>
     <script src="dashboard.js"></script>
+    
 </body>
 </html>
