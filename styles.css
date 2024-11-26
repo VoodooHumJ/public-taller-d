@@ -132,7 +132,7 @@ nav li:hover > a {
 
 .hero-logo {
     height: 150%;
-    margin-right: 350px;
+    margin-right: 300px;
     margin-top: 240px;
 }
 
@@ -145,7 +145,7 @@ nav li:hover > a {
     letter-spacing: 4px;
     text-transform: uppercase;  
     position: absolute;  
-    right: 570px;  
+    margin-right: 500px;  
     top: 740px;
     text-align: right; 
 }
