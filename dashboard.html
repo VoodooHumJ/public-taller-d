@@ -271,68 +271,6 @@
             margin-top: px;
         }
 
-        .user-info {
-            padding: 10px;
-            margin: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        #userName {
-            font-weight: bold;
-            color: #ffffff;
-        }
-
-        /* Si decides incluir la imagen de perfil */
-        .user-image {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .user-info {
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 15px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .user-image {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .user-details {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .welcome-text {
-            color: #666;
-            font-size: 0.9em;
-        }
-
-        .user-name {
-            font-weight: bold;
-            color: #333;
-            font-size: 1.1em;
-        }
-
-        .user-email {
-            color: #ffffff;
-            font-size: 0.8em;
-        }
-
     </style>
 </head>
 <body>
@@ -346,12 +284,8 @@
         <div class="sidebar-header">
             <img src="logo1.png" alt="Logo">
             <div class="user-info">
-                <img id="userImage" class="user-image" src="default-avatar.png" alt="Perfil">
-                <div class="user-details">
-                    <div class="welcome-text">Bienvenido,</div>
-                    <div id="userName" class="user-name">Usuario</div>
-                    <div id="userEmail" class="user-email"></div>
-                </div>
+                <img src="image/perfil.jpg" alt="User Avatar" class="user-avatar">
+                <h4>Bienvenida, Diana Carolina</h4>
                 <h6 class="user-role">Estudiante</h6>
             </div>
         </div>
@@ -363,10 +297,7 @@
             <li><a href="entregas.html">5<i class="fas fa-tasks"></i> Entregas</a></li>
             <li><a href="material.html"><i class="fas fa-book"></i> Material de proyecto</a></li>
             <li><a href="tac-foro.html"><i class="fas fa-comments"></i> TAC-FORO</a></li>
-            <a href="#" id="logout-button" class="nav-link">
-                <i class="fas fa-sign-out-alt"></i>
-                <span>Cerrar Sesión</span>
-            </a>
+            <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
         </ul>
     </div>
 
@@ -464,40 +395,8 @@
                 sidebar.classList.remove('active');
             }
         });
-        
     </script>
     <script src="dashboard.js"></script>
-
-    <script>
-    // Función para mostrar el nombre del usuario
-    function displayUserInfo() {
-        const userName = localStorage.getItem('user_name');
-        const userEmail = localStorage.getItem('user_email');
-        const userImage = localStorage.getItem('user_image');
-        
-        if (userName) {
-            document.getElementById('userName').textContent = userName;
-        }
-        
-        if (userEmail) {
-            document.getElementById('userEmail').textContent = userEmail;
-        }
-        
-        if (userImage) {
-            document.getElementById('userImage').src = userImage;
-        }
-    }
-
-    // Verificar y mostrar la información del usuario
-    document.addEventListener('DOMContentLoaded', function() {
-        displayUserInfo();
-        
-        // Verificar autenticación
-        if (!localStorage.getItem('user_email')) {
-            window.location.replace('index.html');
-        }
-    });
-    </script>
-
+    
 </body>
 </html>
