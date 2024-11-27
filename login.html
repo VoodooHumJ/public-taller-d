@@ -134,7 +134,7 @@
         let validEmails = [];
 
         // Cargar la lista de correos electrónicos válidos
-        fetch('emails.js')
+        fetch('emails.json')
             .then(response => response.json())
             .then(data => {
                 validEmails = data.valid_emails;
