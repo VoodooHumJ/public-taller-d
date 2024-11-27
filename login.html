@@ -143,20 +143,14 @@
 
         function handleCredentialResponse(response) {
             const responsePayload = decodeJwtResponse(response.credential);
-            const email = responsePayload.email;
-
-            // Validar el correo electrónico
-            if (validateEmail(email)) {
-                console.log("ID: " + responsePayload.sub);
-                console.log('Full Name: ' + responsePayload.name);
-                console.log('Email: ' + responsePayload.email);
-                console.log('Picture: ' + responsePayload.picture);
-
-                // Redirigir al LMS después de iniciar sesión
-                window.location.href = 'dashboard.html'; // Cambia esto a la URL de tu LMS
-            } else {
-                alert("El correo electrónico no está autorizado para ingresar.");
-            }
+            
+            // Guardar la información del usuario
+            localStorage.setItem('user_name', responsePayload.name);
+            localStorage.setItem('user_email', responsePayload.email);
+            localStorage.setItem('user_image', responsePayload.picture); // Si quieres guardar la imagen
+            
+            // Redirigir a dashboard
+            window.location.href = 'dashboard.html';
         }
 
         function validateEmail(email) {
