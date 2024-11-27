@@ -143,35 +143,19 @@
 
         function handleCredentialResponse(response) {
             const responsePayload = decodeJwtResponse(response.credential);
-            const userEmail = responsePayload.email;
-            
-            // Verificar rol
-            const userRole = checkUserRole(userEmail);
-            
-            if (userRole) {
-                // Guardar información del usuario y rol
-                localStorage.setItem('user_email', userEmail);
-                localStorage.setItem('user_name', responsePayload.name);
-                localStorage.setItem('user_role', userRole);
-                
-                // Redirigir según el rol
-                switch(userRole) {
-                    case 'admin':
-                        window.location.href = 'admin-dashboard.html';
-                        break;
-                    case 'teacher':
-                        window.location.href = 'teacher-dashboard.html';
-                        break;
-                    case 'student':
-                        window.location.href = 'student-dashboard.html';
-                        break;
-                    default:
-                        window.location.href = 'dashboard.html';
-                }
+            const email = responsePayload.email;
+
+            // Validar el correo electrónico
+            if (validateEmail(email)) {
+                console.log("ID: " + responsePayload.sub);
+                console.log('Full Name: ' + responsePayload.name);
+                console.log('Email: ' + responsePayload.email);
+                console.log('Picture: ' + responsePayload.picture);
+
+                // Redirigir al LMS después de iniciar sesión
+                window.location.href = 'dashboard.html'; // Cambia esto a la URL de tu LMS
             } else {
-                alert('No tienes acceso a esta plataforma');
-                // Opcional: cerrar sesión de Google
-                google.accounts.id.disableAutoSelect();
+                alert("El correo electrónico no está autorizado para ingresar.");
             }
         }
 
