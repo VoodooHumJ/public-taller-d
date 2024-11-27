@@ -406,54 +406,92 @@
             e.preventDefault();
     
             try {
-                const confirmar = confirm('¿Estás seguro que deseas cerrar sesión?');
-        
-                if (confirmar) {
+                if (confirm('¿Estás seguro que deseas cerrar sesión?')) {
                     // Cerrar sesión de Google
                     google.accounts.id.disableAutoSelect();
             
-                    // Limpiar datos locales
+                    // Limpiar todos los datos de autenticación
                     localStorage.clear();
                     sessionStorage.clear();
             
-                    // Limpiar todas las cookies
+                    // Limpiar cookies
                     document.cookie.split(";").forEach(function(c) { 
                         document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
                     });
             
-                    // Reemplazar el historial actual
-                    window.history.replaceState(null, '', 'index.html');
+                    // Establecer flag de cierre de sesión
+                    localStorage.setItem('wasLoggedOut', 'true');
             
-                    // Redirigir y prevenir navegación hacia atrás
+                    // Redirigir
                     window.location.replace('index.html');
                 }
             } catch (error) {
                 console.error('Error al cerrar sesión:', error);
-                alert('Hubo un error al cerrar sesión. Por favor, intenta nuevamente.');
+                alert('Error al cerrar sesión. Por favor, intenta nuevamente.');
             }
         });
     </script>
     <script src="dashboard.js"></script>
 
     <script>
-    // Agregar al inicio del archivo
+    // Función más robusta para verificar autenticación
+    function isUserAuthenticated() {
+        const checks = [
+            localStorage.getItem('isAuthenticated') === 'true',
+            !!localStorage.getItem('user_email'),
+            !!sessionStorage.getItem('user_email'),
+            document.cookie.includes('user_email')
+        ];
+        
+        // Retorna true si al menos dos verificaciones son exitosas
+        return checks.filter(Boolean).length >= 2;
+    }
+
+    // Función de verificación mejorada
     function checkAuth() {
-        // Verificar si hay sesión activa
-        const isLoggedIn = localStorage.getItem('user_email');
-        if (!isLoggedIn) {
+        if (!isUserAuthenticated()) {
             window.location.replace('index.html');
         }
     }
 
-    // Ejecutar al cargar la página
-    document.addEventListener('DOMContentLoaded', checkAuth);
-
-    // Verificar cuando el usuario intenta navegar
-    window.addEventListener('pageshow', function(event) {
-        if (event.persisted) {
-            checkAuth();
-        }
+    // Inicialización
+    document.addEventListener('DOMContentLoaded', function() {
+        // Primera verificación después de un breve retraso
+        setTimeout(() => {
+            if (!isUserAuthenticated()) {
+                window.location.replace('index.html');
+            }
+        }, 1500);
     });
+    </script>
+
+    <script>
+    // Función para manejar la respuesta de Google Sign-In
+    function handleCredentialResponse(response) {
+        // Decodificar el token JWT
+        const responsePayload = decodeJwtResponse(response.credential);
+        
+        // Guardar datos en múltiples lugares para redundancia
+        localStorage.setItem('user_email', responsePayload.email);
+        localStorage.setItem('user_name', responsePayload.name);
+        sessionStorage.setItem('user_email', responsePayload.email);
+        
+        // Establecer una cookie
+        document.cookie = `user_email=${responsePayload.email}; path=/`;
+        
+        // Establecer flag de autenticación
+        localStorage.setItem('isAuthenticated', 'true');
+    }
+
+    // Función para decodificar JWT
+    function decodeJwtResponse(token) {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+        return JSON.parse(jsonPayload);
+    }
     </script>
 
 </body>
