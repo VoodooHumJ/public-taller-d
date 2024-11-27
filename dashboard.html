@@ -7,7 +7,7 @@
     <link rel="icon" href="favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-     
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
          
@@ -272,6 +272,9 @@
         }
 
     </style>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 </head>
 <body>
      
@@ -297,7 +300,10 @@
             <li><a href="entregas.html">5<i class="fas fa-tasks"></i> Entregas</a></li>
             <li><a href="material.html"><i class="fas fa-book"></i> Material de proyecto</a></li>
             <li><a href="tac-foro.html"><i class="fas fa-comments"></i> TAC-FORO</a></li>
-            <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            <a href="#" id="logout-button" class="nav-link">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Cerrar Sesión</span>
+            </a>
         </ul>
     </div>
 
@@ -395,8 +401,60 @@
                 sidebar.classList.remove('active');
             }
         });
+
+        document.getElementById('logout-button').addEventListener('click', async function(e) {
+            e.preventDefault();
+    
+            try {
+                const confirmar = confirm('¿Estás seguro que deseas cerrar sesión?');
+        
+                if (confirmar) {
+                    // Cerrar sesión de Google
+                    google.accounts.id.disableAutoSelect();
+            
+                    // Limpiar datos locales
+                    localStorage.clear();
+                    sessionStorage.clear();
+            
+                    // Limpiar todas las cookies
+                    document.cookie.split(";").forEach(function(c) { 
+                        document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+                    });
+            
+                    // Reemplazar el historial actual
+                    window.history.replaceState(null, '', 'index.html');
+            
+                    // Redirigir y prevenir navegación hacia atrás
+                    window.location.replace('index.html');
+                }
+            } catch (error) {
+                console.error('Error al cerrar sesión:', error);
+                alert('Hubo un error al cerrar sesión. Por favor, intenta nuevamente.');
+            }
+        });
     </script>
     <script src="dashboard.js"></script>
-    
+
+    <script>
+    // Agregar al inicio del archivo
+    function checkAuth() {
+        // Verificar si hay sesión activa
+        const isLoggedIn = localStorage.getItem('user_email');
+        if (!isLoggedIn) {
+            window.location.replace('index.html');
+        }
+    }
+
+    // Ejecutar al cargar la página
+    document.addEventListener('DOMContentLoaded', checkAuth);
+
+    // Verificar cuando el usuario intenta navegar
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted) {
+            checkAuth();
+        }
+    });
+    </script>
+
 </body>
 </html>
