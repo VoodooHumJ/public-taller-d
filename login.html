@@ -134,7 +134,7 @@
         let validEmails = [];
 
         // Cargar la lista de correos electrónicos válidos
-        fetch('emails.json')
+        fetch('emails.js')
             .then(response => response.json())
             .then(data => {
                 validEmails = data.valid_emails;
@@ -143,14 +143,36 @@
 
         function handleCredentialResponse(response) {
             const responsePayload = decodeJwtResponse(response.credential);
+            const userEmail = responsePayload.email;
             
-            // Guardar la información del usuario
-            localStorage.setItem('user_name', responsePayload.name);
-            localStorage.setItem('user_email', responsePayload.email);
-            localStorage.setItem('user_image', responsePayload.picture); // Si quieres guardar la imagen
+            // Verificar rol
+            const userRole = checkUserRole(userEmail);
             
-            // Redirigir a dashboard
-            window.location.href = 'dashboard.html';
+            if (userRole) {
+                // Guardar información del usuario y rol
+                localStorage.setItem('user_email', userEmail);
+                localStorage.setItem('user_name', responsePayload.name);
+                localStorage.setItem('user_role', userRole);
+                
+                // Redirigir según el rol
+                switch(userRole) {
+                    case 'admin':
+                        window.location.href = 'admin-dashboard.html';
+                        break;
+                    case 'teacher':
+                        window.location.href = 'teacher-dashboard.html';
+                        break;
+                    case 'student':
+                        window.location.href = 'student-dashboard.html';
+                        break;
+                    default:
+                        window.location.href = 'dashboard.html';
+                }
+            } else {
+                alert('No tienes acceso a esta plataforma');
+                // Opcional: cerrar sesión de Google
+                google.accounts.id.disableAutoSelect();
+            }
         }
 
         function validateEmail(email) {

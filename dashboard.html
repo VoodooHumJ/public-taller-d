@@ -333,6 +333,50 @@
             font-size: 0.8em;
         }
 
+        .role-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        [data-role="admin"] .role-badge {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        [data-role="teacher"] .role-badge {
+            background-color: #28a745;
+            color: white;
+        }
+
+        [data-role="student"] .role-badge {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .role-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+       [data-role="admin"] .role-badge {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        [data-role="teacher"] .role-badge {
+            background-color: #28a745;
+            color: white;
+        }
+
+        [data-role="student"] .role-badge {
+            background-color: #007bff;
+            color: white;
+        }
+
     </style>
 </head>
 <body>
@@ -465,15 +509,12 @@
             }
         });
         
-    </script>
-    <script src="dashboard.js"></script>
 
-    <script>
-    // Función para mostrar el nombre del usuario
-    function displayUserInfo() {
-        const userName = localStorage.getItem('user_name');
-        const userEmail = localStorage.getItem('user_email');
-        const userImage = localStorage.getItem('user_image');
+        // Función para mostrar el nombre del usuario
+        function displayUserInfo() {
+            const userName = localStorage.getItem('user_name');
+            const userEmail = localStorage.getItem('user_email');
+            const userImage = localStorage.getItem('user_image');
         
         if (userName) {
             document.getElementById('userName').textContent = userName;
@@ -486,15 +527,42 @@
         if (userImage) {
             document.getElementById('userImage').src = userImage;
         }
-    }
 
-    // Verificar y mostrar la información del usuario
-    document.addEventListener('DOMContentLoaded', function() {
-        displayUserInfo();
+        // Verificar y mostrar la información del usuario
+        document.addEventListener('DOMContentLoaded', function() {
+            displayUserInfo();
         
         // Verificar autenticación
-        if (!localStorage.getItem('user_email')) {
+            if (!localStorage.getItem('user_email')) {
             window.location.replace('index.html');
+            }
+        });
+    
+
+    
+        import { hasPermission } from './emails.js';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const userEmail = localStorage.getItem('user_email');
+            const userRole = localStorage.getItem('user_role');
+            
+            // Mostrar/ocultar elementos según permisos
+            if (hasPermission(userEmail, 'write')) {
+            document.querySelectorAll('.write-permission').forEach(el => {
+                el.style.display = 'block';
+            });
+        }
+        
+        if (hasPermission(userEmail, 'manage_users')) {
+            document.querySelectorAll('.admin-permission').forEach(el => {
+                el.style.display = 'block';
+            });
+        }
+        
+        // Mostrar información del rol
+        const roleDisplay = document.getElementById('userRole');
+        if (roleDisplay) {
+            roleDisplay.textContent = userRole.charAt(0).toUpperCase() + userRole.slice(1);
         }
     });
     </script>
