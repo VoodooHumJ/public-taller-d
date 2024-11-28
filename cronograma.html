@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil | Taller-D</title>
+    <title>Cronograma | Taller-D</title>
     <link rel="icon" href="favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="perfil.css">
@@ -27,9 +27,224 @@
             <li><a href="entregas.html"><i class="fas fa-tasks"></i> Entregas</a></li>
             <li><a href="material.html"><i class="fas fa-book"></i> Material de proyecto</a></li>
             <li><a href="foro.html"><i class="fas fa-comments"></i> TAC-FORO</a></li>
-            <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
         </ul>
     </div>
+    <div class="main-content">
+        <h1>Cronograma académico</h1>
+        <div class="calendar-header">
+            <div class="calendar-navigation">
+                <button id="prevMonthBtn" class="nav-btn"><i class="fas fa-chevron-left"></i></button>
+                <h2 id="currentMonthDisplay"></h2>
+                <button id="nextMonthBtn" class="nav-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="view-buttons">
+                <button id="monthViewBtn" class="active">Mes</button>
+                <button id="dayViewBtn">Día</button>
+            </div>
+        </div>
+        <div id="calendar"></div>
+    </div>
+
+    <style>
+        h1 {
+            font-family: 'Futura', sans-serif;
+            color: #000;
+        }
+
+        .day-view {
+            font-family: 'Futura', sans-serif;
+            color: #000;
+        }
+
+        .main-content {
+            background-color: #aca7a7;
+            margin-left: var(--sidebar-width);
+            padding: 20px;
+            height: 100vh;
+        }
+
+        .calendar-header {
+            margin-bottom: 20px;
+            font-family: 'Futura', sans-serif;
+            color: #000;
+        }
+
+        .view-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .view-buttons button {
+            padding: 8px 16px;
+            background: var(--primary-color);
+            border: 1px solid var(--secondary-color);
+            color: var(--secondary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-buttons button.active {
+            background: var(--secondary-color);
+            color: black;
+        }
+
+        #calendar {
+            font-family: 'Futura', sans-serif;
+            color: #000;
+            height: calc(100vh - 100px);
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .page-title {
+            font-family: 'Futura', sans-serif;
+            color: #000;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        .calendar-header {
+            font-family: 'Futura', sans-serif;
+            color: #000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-navigation {
+            font-family: 'Futura', sans-serif;
+            color: #000;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            background: var(--primary-color);
+            border: 1px solid var(--secondary-color);
+            color: var(--secondary-color);
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--secondary-color);
+            color: black;
+        }
+
+        #currentMonthDisplay {
+            font-family: 'Futura', sans-serif;
+            color: #000;
+            min-width: 200px;
+            text-align: center;
+            margin: 0;
+        }
+    </style>
+
+    <script>
+        const Calendar = tui.Calendar;
+        
+        const calendar = new Calendar('#calendar', {
+            defaultView: 'month',
+            usageStatistics: false,
+            isReadOnly: true,
+            week: {
+                dayNames: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+                workweek: true
+            },
+            month: {
+                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                workweek: true
+            },
+            theme: {
+                common: {
+                    backgroundColor: 'transparent',
+                    border: '1px solid #ffffff33',
+                    gridSelection: {
+                        backgroundColor: 'rgba(255, 255, 255, 0.05)'
+                    }
+                },
+                month: {
+                    dayName: {
+                        color: '#000'
+                    },
+                    holidayExceptThisMonth: {
+                        color: '#000'
+                    },
+                    dayExceptThisMonth: {
+                        color: '#000'
+                    },
+                    weekend: {
+                        color: '#ff9999'
+                    }
+                }
+            }
+        });
+
+        // Generar eventos aleatorios
+        const eventTitles = ['Entrega de Proyecto', 'Revisión', 'Taller Grupal', 'Presentación', 'Evaluación'];
+        const randomEvents = [];
+        
+        for(let i = 0; i < 5; i++) {
+            const startDate = new Date();
+            startDate.setDate(startDate.getDate() + Math.floor(Math.random() * 30));
+            
+            const endDate = new Date(startDate);
+            endDate.setHours(startDate.getHours() + Math.floor(Math.random() * 3) + 1);
+
+            randomEvents.push({
+                id: String(i),
+                title: eventTitles[Math.floor(Math.random() * eventTitles.length)],
+                start: startDate,
+                end: endDate,
+                backgroundColor: `hsl(${Math.random() * 360}, 70%, 70%)`
+            });
+        }
+
+        calendar.createEvents(randomEvents);
+
+        // Función para actualizar el display del mes
+        function updateMonthDisplay() {
+            const currentDate = calendar.getDate();
+            moment.locale('es'); // Configurar moment.js en español
+            const monthYear = moment(currentDate.toDate()).format('MMMM | YYYY');
+            document.getElementById('currentMonthDisplay').textContent = monthYear.charAt(0).toUpperCase() + monthYear.slice(1);
+        }
+
+        // Actualizar el display inicial
+        updateMonthDisplay();
+
+        // Manejadores para los botones de navegación
+        document.getElementById('prevMonthBtn').addEventListener('click', function() {
+            calendar.prev();
+            updateMonthDisplay();
+        });
+
+        document.getElementById('nextMonthBtn').addEventListener('click', function() {
+            calendar.next();
+            updateMonthDisplay();
+        });
+
+        // Manejadores de botones de vista
+        document.getElementById('monthViewBtn').addEventListener('click', function() {
+            calendar.changeView('month');
+            this.classList.add('active');
+            document.getElementById('dayViewBtn').classList.remove('active');
+        });
+
+        document.getElementById('dayViewBtn').addEventListener('click', function() {
+            calendar.changeView('day');
+            this.classList.add('active');
+            document.getElementById('monthViewBtn').classList.remove('active');
+        });
+    </script>
 
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="calendar.js"></script>

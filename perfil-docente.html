@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil | Taller-D</title>
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="perfil.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+         
+        :root {
+            --sidebar-width: 250px;
+            --primary-color: #ffffff33;
+            --secondary-color: #ffffff;
+            --bg-color: #000000;
+        }
+
+        ::selection {
+            background-color: #808080;
+            color: #f4f4f4;
+        }
+        
+        @font-face {
+            font-family: 'Futura';
+            src: url('futura/Futura\ Book.ttf') format('truetype');  
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--bg-color);
+        }
+
+         
+        .sidebar {
+            font-size: 11px;
+            text-transform: uppercase;
+            font-stretch: expanded;
+            letter-spacing: 2px;
+            font-weight: 100;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: rgb(19, 18, 18);
+            backdrop-filter: blur(10px);
+            box-shadow: 2px 0 5px rgba(51, 50, 50, 0.1);
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+        }
+
+        .sidebar-header img {
+            width: 120px;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar-menu a {
+            font-family: 'Futura', sans-serif;
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--secondary-color);
+            text-decoration: none;
+            border-radius: 0px;
+            transition: all 0.3s;
+        }
+
+        .sidebar-menu a:hover {
+            background: var(--bg-color);
+            color: #ffffff;
+        }
+
+        .sidebar-menu i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+         
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 20px;
+        }
+
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: white;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+        }
+
+        .profile-container {
+            padding: 20px;
+            background: #ffffff33;
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            margin-top: 20px;
+        }
+
+        .profile-header {
+            color: #ffffff;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-header img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+            border: 2px solid var(--primary-color);
+        }
+
+        .profile-header h2 {
+            font-family: 'Futura', sans-serif;
+            color: #ffffff;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .profile-header p {
+            font-family: 'Futura', sans-serif;
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .workshops {
+            margin-top: 20px;
+        }
+
+        .workshops h3 {
+            font-family: 'Futura', sans-serif;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .workshop-item {
+            font-family: 'Futura', sans-serif;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .workshop-item h4 {
+            margin: 0;
+        }
+
+        .workshop-item p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        
+        #uploadPhoto, #updateProfile {
+            font-family: 'Futura', sans-serif;
+            margin-top: 10px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-right: 10px;
+        }
+
+        #uploadPhoto:hover, #updateProfile:hover {
+            background-color: darken(var(--primary-color), 10%);
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="logo1.png" alt="Logo" style="width: 120px;">
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="dashboard-docente.html"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="perfil-docente.html"><i class="fas fa-user"></i> Perfil</a></li>
+            <li><a href="notas.html"><i class="fas fa-user"></i> Notas</a></li>
+            <li><a href="cronograma-docente.html"><i class="fas fa-calendar"></i> Cronograma</a></li>
+            <li><a href="entregas-docente.html"><i class="fas fa-tasks"></i> Entregas</a></li>
+            <li><a href="material-docente.html"><i class="fas fa-book"></i> Material de proyecto</a></li>
+            <li><a href="tac-foro-docente.html"><i class="fas fa-comments"></i> TAC-FORO</a></li>
+            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+        </ul>
+    </div>
+    
+    <div class="main-content">
+        <div class="profile-container">
+            <div class="profile-header">
+                <img src="image/team/member1.jpg" alt="Foto de Perfil" id="profileImage">
+                <div>
+                    <h2 id="fullName">Arq. Saúl López M.</h2>
+                    <p id="email">saul.lopez@umsa.bo</p>
+                    <p id="carrera">Docente - ARQUITECTURA - FAADU - UMSA</p>
+                    <input type="file" id="photoInput" accept="image/*" style="display: none;" onchange="previewImage(event)">
+                    <label for="photoInput" id="uploadPhoto">Subir Foto</label>
+                    <button id="updateProfile">Actualizar Perfil</button>
+                </div>
+            </div>
+
+            <div class="workshops">
+                <h3>Comunicados internos TAC-D</h3>
+                <div class="workshop-item">
+                    <h4>Lista actualizada de estudiantes</h4>
+                    <p>Año: 2024</p>
+                </div>
+                
+                 
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('profileImage').src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+
+        document.getElementById('updateProfile').addEventListener('click', function() {
+            alert('Perfil actualizado con éxito.'); // Aquí puedes agregar la lógica para actualizar el perfil
+        });
+
+    </script>
+</body>
+</html>
