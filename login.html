@@ -169,27 +169,6 @@
             );
         };
 
-        function onSignIn(googleUser) {
-            const profile = googleUser.getBasicProfile();
-            const userData = {
-                id: profile.getId(),
-                name: profile.getName(),
-                email: profile.getEmail(),
-                imageUrl: profile.getImageUrl()
-            };
-
-            localStorage.setItem('userProfile', JSON.stringify(userData));
-
-            if (userData.email.endsWith('@docente.umsa.bo')) {
-                window.location.href = 'dashboard-docente.html';
-            } else if (userData.email.endsWith('@umsa.bo')) {
-                window.location.href = 'dashboard.html';
-            } else {
-                alert('Por favor, utiliza un correo institucional de la UMSA');
-                signOut();
-            }
-        }
-
         function signOut() {
             const auth2 = gapi.auth2.getInit();
             auth2.signOut().then(function () {
