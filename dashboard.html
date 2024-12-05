@@ -431,24 +431,6 @@
 
      
     
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Verificar si el usuario está autenticado
-            const userProfile = localStorage.getItem('userProfile');
-            if (!userProfile) {
-                window.location.href = 'login.html';
-                return;
-            }
-        
-            // Cargar datos del usuario
-            const userData = JSON.parse(userProfile);
-            
-            // Actualizar la UI con los datos del usuario
-            document.querySelector('.user-info h4').textContent = `Bienvenido, ${userData.name}`;
-            document.querySelector('.user-avatar').src = userData.imageUrl;
-            
-            // ... resto del código existente ...
-        });
     </script>
     <script src="dashboard.js"></script>
 
