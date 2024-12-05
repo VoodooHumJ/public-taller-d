@@ -111,18 +111,17 @@
         <h1>Iniciar Sesión en Plataforma TAC-D</h1>
         
         <div id="g_id_onload"
-             data-client_id="609812063852-o48rdsd95u63mgjikg5e4ug48d7k0l5u.apps.googleusercontent.com"
+             data-client_id="TU_CLIENT_ID.apps.googleusercontent.com"
              data-context="signin"
              data-callback="handleCredentialResponse">
         </div>
         <a href="#" id="customGoogleSignIn" class="btn btn-primary">
-            <i class="fab fa-google"></i> -  Iniciar sesión con Google
+            <i class="fab fa-google"></i> - Iniciar sesión con Google
         </a>
 
         <div class="consent-text">
             Al iniciar sesión, aceptas nuestros <a href="#">Términos y Condiciones</a> y nuestra 
-            <a href="#">Política de Privacidad</a>. Tus datos serán tratados de acuerdo a las 
-            políticas institucionales y solo serán utilizados para fines académicos.
+            <a href="#">Política de Privacidad</a>.
         </div>
 
         <a href="index.html" class="back-link">
@@ -137,10 +136,12 @@
 
     <script>
         document.getElementById('customGoogleSignIn').addEventListener('click', function() {
-    google.accounts.id.prompt(); // Muestra el cuadro de diálogo de Google Sign-In
-});
-        let validEmails = [];
+            google.accounts.id.prompt(); // Muestra el cuadro de diálogo de Google Sign-In
+        });
 
+        function handleCredentialResponse(response) {
+            const responsePayload = decodeJwtResponse(response.credential);
+            const email = responsePayload.email;
         // Cargar la lista de correos electrónicos válidos
         fetch('emails.json')
             .then(response => response.json())
@@ -148,10 +149,6 @@
                 validEmails = data.valid_emails;
             })
             .catch(error => console.error('Error al cargar la lista de correos:', error));
-
-        function handleCredentialResponse(response) {
-            const responsePayload = decodeJwtResponse(response.credential);
-            const email = responsePayload.email;
 
             // Validar el correo electrónico
             if (validateEmail(email)) {
@@ -166,8 +163,27 @@
                 alert("El correo electrónico no está autorizado para ingresar.");
             }
         }
+            const email = responsePayload.email;
 
+            // Validar el correo electrónico
+            if (validateEmail(email)) {
+                console.log("ID: " + responsePayload.sub);
+                console.log('Full Name: ' + responsePayload.name);
+                console.log('Email: ' + responsePayload.email);
+                console.log('Picture: ' + responsePayload.picture);
+
+                // Redirigir al LMS después de iniciar sesión
+                window.location.href = 'dashboard.html'; // Cambia esto a la URL de tu LMS
+            } else {
+                alert("El correo electrónico no está autorizado para ingresar.");
+            }
+        
         function validateEmail(email) {
+            // Aquí puedes agregar la lógica para validar el correo electrónico
+            return email.endsWith('@umsa.bo') || email.endsWith('@docente.umsa.bo');
+        }
+
+            function validateEmail(email) {
             // Verificar si el correo electrónico está en la lista de correos válidos
             return validEmails.includes(email);
         }
