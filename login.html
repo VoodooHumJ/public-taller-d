@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAC-D | Iniciar Sesión</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-client_id" content="609812063852-o48rdsd95u63mgjikg5e4ug48d7k0l5u.apps.googleusercontent.com">
@@ -22,7 +24,6 @@
             justify-content: center;
             background-color: #000000;
             font-family: 'Futura', sans-serif;
-            
         }
         @keyframes shadowPulse {
             0% { box-shadow: 0 0 60px #302f2f; }
@@ -37,7 +38,6 @@
             border-radius: 15px;
             box-shadow: 0 0 100px #1f1e1e;
             animation: shadowPulse 3s infinite;
-            -webkit-animation: shadowPulse 3s infinite;
             text-align: center;
             max-width: 500px;
             width: 90%;
@@ -47,8 +47,6 @@
             margin-bottom: 1.5rem;
         }
         h1 {
-            font-family: 'Futura', sans-serif;
-
             color: #808080;
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
@@ -72,39 +70,31 @@
         .back-link:hover {
             color: #333;
         }
-
         #customGoogleSignIn {
-        background-color: #111213; /* Color de fondo */
-        color: white; /* Color del texto */
-        border: 1px solid #8d9197;
-        padding: 10px 20px; /* Espaciado */
-        border-radius: 5px; /* Bordes redondeados */
-        text-decoration: none; /* Sin subrayado */
-        display: inline-flex; /* Para alinear el ícono y el texto */
-        align-items: center; /* Centrar verticalmente */
+            background-color: #111213;
+            color: white;
+            border: 1px solid #8d9197;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
         }
-
         #customGoogleSignIn:hover {
-            background-color: #161718; /* Color de fondo al pasar el mouse */
+            background-color: #161718;
         }
-
         a {
-            color: rgb(255, 255, 255); /* Cambia el color de los enlaces a negro */
-            text-decoration: none; /* Opcional: elimina el subrayado */
+            color: rgb(255, 255, 255);
+            text-decoration: none;
         }
-
         a:hover {
-            color: #808080; /* Cambia el color al pasar el mouse */
+            color: #808080;
         }
-
-
     </style>
 </head>
 <body>
-    
     <div style="margin-top: 20px;"></div>
-        <a href="dashboard.html" class="btn btn-primary" style="font-family: 'Futura', sans-serif; background-color: #808080; border: none;">Dashboard</a>
-    </div>
+    <a href="dashboard.html" class="btn btn-primary" style="font-family: 'Futura', sans-serif; background-color: #808080; border: none;">Dashboard</a>
     
     <div class="login-container">
         <img src="logo1.png" alt="Logo Institucional" class="institutional-logo">
@@ -129,63 +119,31 @@
         </a>
     </div>
 
-    <!-- Add Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <!-- Add Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
-
     <script>
         document.getElementById('customGoogleSignIn').addEventListener('click', function() {
-            google.accounts.id.prompt(); // Muestra el cuadro de diálogo de Google Sign-In
+            google.accounts.id.prompt();
         });
 
         function handleCredentialResponse(response) {
             const responsePayload = decodeJwtResponse(response.credential);
             const email = responsePayload.email;
-        // Cargar la lista de correos electrónicos válidos
-        fetch('emails.json')
-            .then(response => response.json())
-            .then(data => {
-                validEmails = data.valid_emails;
-            })
-            .catch(error => console.error('Error al cargar la lista de correos:', error));
 
-            // Validar el correo electrónico
+            fetch('emails.json')
+                .then(response => response.json())
+                .then(data => {
+                    validEmails = data.valid_emails;
+                })
+                .catch(error => console.error('Error al cargar la lista de correos:', error));
+
             if (validateEmail(email)) {
                 console.log("ID: " + responsePayload.sub);
                 console.log('Full Name: ' + responsePayload.name);
                 console.log('Email: ' + responsePayload.email);
                 console.log('Picture: ' + responsePayload.picture);
-
-                // Redirigir al LMS después de iniciar sesión
-                window.location.href = 'dashboard.html'; // Cambia esto a la URL de tu LMS
+                window.location.href = 'dashboard.html';
             } else {
                 alert("El correo electrónico no está autorizado para ingresar.");
             }
-        }
-            const email = responsePayload.email;
-
-            // Validar el correo electrónico
-            if (validateEmail(email)) {
-                console.log("ID: " + responsePayload.sub);
-                console.log('Full Name: ' + responsePayload.name);
-                console.log('Email: ' + responsePayload.email);
-                console.log('Picture: ' + responsePayload.picture);
-
-                // Redirigir al LMS después de iniciar sesión
-                window.location.href = 'dashboard.html'; // Cambia esto a la URL de tu LMS
-            } else {
-                alert("El correo electrónico no está autorizado para ingresar.");
-            }
-        
-        function validateEmail(email) {
-            // Aquí puedes agregar la lógica para validar el correo electrónico
-            return email.endsWith('@umsa.bo') || email.endsWith('@docente.umsa.bo');
-        }
-
-            function validateEmail(email) {
-            // Verificar si el correo electrónico está en la lista de correos válidos
-            return validEmails.includes(email);
         }
 
         function decodeJwtResponse(token) {
@@ -212,10 +170,7 @@
         };
 
         function onSignIn(googleUser) {
-            // Obtener el perfil del usuario
             const profile = googleUser.getBasicProfile();
-            
-            // Obtener datos relevantes
             const userData = {
                 id: profile.getId(),
                 name: profile.getName(),
@@ -223,10 +178,8 @@
                 imageUrl: profile.getImageUrl()
             };
 
-            // Guardar datos del usuario en localStorage
             localStorage.setItem('userProfile', JSON.stringify(userData));
 
-            // Determinar la página de redirección basada en el dominio del correo
             if (userData.email.endsWith('@docente.umsa.bo')) {
                 window.location.href = 'dashboard-docente.html';
             } else if (userData.email.endsWith('@umsa.bo')) {
@@ -245,7 +198,5 @@
             });
         }
     </script>
-
-    
 </body>
 </html> 
